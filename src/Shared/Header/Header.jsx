@@ -6,12 +6,18 @@ import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../assets/fusion-cuisine-low-resolution-logo-black-on-transparent-background.png'
 import logo2 from '../../assets/fusion-cuisine-logo.png'
 import './Header.css'
-import { Link } from 'react-router-dom';
+import { Link , NavLink } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user , logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut()
+        .then()
+        .catch(error => console.log(eroor))
+    }
+
     return (
         <div className='text-center container p-4 mt-3'>
 
@@ -21,17 +27,43 @@ const Header = () => {
                 <Container>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="me-auto d-flex align-items-center">
-                            <img className='logo-img' src={logo2} alt="" />
-                            <Nav.Link href="#features">
-                                <Link to="/">Home</Link>
-                            </Nav.Link>
-                            <Nav.Link className='text-decoration-none' href="#pricing">
-                                <Link className='text-decoration-none' to="/blog">Blog</Link>
-                            </Nav.Link>
-                            <Nav.Link href="#register">
-                                <Link to="/register">Register</Link>
-                            </Nav.Link>
+                        <Nav className="me-auto d-flex align-items-center justify-content-evenly">
+                            <img className='logo-img mx-3' src={logo2} alt="" />
+                            <div className=" d-flex align-items-center gap-3">
+
+                                <Nav.Link>
+                                    <NavLink
+                                        className='text-decoration-none text-dark'
+                                        to="/"
+                                        activeClassName='active'
+                                    >
+                                        Home
+                                    </NavLink>
+                                </Nav.Link>
+                                <Nav.Link>
+                                    <NavLink
+                                        className='text-decoration-none text-dark'
+                                        to="/blog"
+                                        activeClassName='active'
+                                    >
+                                        Blog
+                                    </NavLink>
+                                </Nav.Link>
+                                <Nav.Link>
+                                    <NavLink
+                                        className='text-decoration-none text-dark'
+                                        to="/register"
+                                        activeClassName='active'
+                                    >
+                                        Register
+                                    </NavLink>
+                                </Nav.Link>
+
+
+
+
+                            </div>
+
 
                         </Nav>
                         <Nav>
@@ -40,7 +72,7 @@ const Header = () => {
                             }
                             {
                                 user ?
-                                    <Button variant="secondary">Logout</Button> :
+                                    <Button onClick={handleLogOut} variant="secondary">Logout</Button> :
                                     <Link to="/login">
                                         <Button variant="secondary">Login</Button>
                                     </Link>

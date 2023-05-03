@@ -16,6 +16,8 @@ import ChefsRecipe from './components/ChefsRecipe/ChefsRecipe.jsx';
 import Error from './components/Error/Error.jsx';
 import Chefs from './components/Chefs/Chefs.jsx';
 import AuthProvider from './provider/AuthProvider.jsx';
+import Terms from './components/Terms/Terms.jsx';
+import PrivateRoute from './components/Route/PrivateRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -41,8 +43,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/chefRecipe/:id",
-        element: <ChefsRecipe></ChefsRecipe>,
+        element: <PrivateRoute><ChefsRecipe></ChefsRecipe></PrivateRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/chefs/${params.id}`),
+      },
+      {
+        path: "/terms",
+        element: <Terms></Terms>
+       
       },
       {
         path: '*',

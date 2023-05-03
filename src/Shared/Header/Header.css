@@ -2,3 +2,10 @@
     height: 60x;
     width: 100px;
 }
+
+.active {
+   color: rgb(254, 252, 252);
+   background-color: darkgrey;
+   padding: 10px 15px;
+   border-radius: 15px;
+  }
