@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Container, Toast } from 'react-bootstrap';
 import { useLoaderData, useParams } from 'react-router-dom';
+import { FaThumbsUp } from "react-icons/fa";
+
 
 const ChefsRecipe = () => {
     const chefs = useLoaderData();
@@ -34,7 +36,7 @@ const ChefsRecipe = () => {
                         <h1>{chefs.name}</h1>
                         <p>{chefs.bio}</p>
                         <div className="stats">
-                            <p>Likes: {chefs.likes}</p>
+                            <p>Likes: {chefs.likes} <FaThumbsUp></FaThumbsUp> </p>
                             <p>Recipes: {chefs.numRecipes}</p>
                             <p>Experience: {chefs.experience} years</p>
                         </div>
