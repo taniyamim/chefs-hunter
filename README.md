@@ -9,6 +9,7 @@ About my project :
 * After clicking on view recipe button it will redirect to chefs recipe page .its a private route so user have to signup or login in order to go there.so it will redirect to login page.
 *In the login page there are three option for login email,password or google or github.
 * There is also a register page it will allow user to register.
+* I have added a favourite button where favourite recipe can be added and a toaster will show. 
 
 ### Link of my live site is:
 
