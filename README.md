@@ -12,4 +12,4 @@ About my project :
 
 ### Link of my live site is:
 
-[Link](https://peppy-lollipop-f94439.netlify.app/)
+[Link](https://chefs-hunter-54e93.web.app/)
