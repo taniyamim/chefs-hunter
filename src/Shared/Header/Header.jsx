@@ -81,7 +81,7 @@ const Header = () => {
                             {user && (
                                 <OverlayTrigger placement="bottom" overlay={userTooltip}>
                                     <Nav.Link href="#deets">
-                                        <img src={user.photoURL} className='rounded-circle w-50' alt="" />
+                                        <img src={user.photoURL} className='rounded-circle w-25' alt="" />
                                     </Nav.Link>
                                 </OverlayTrigger>
                             )}

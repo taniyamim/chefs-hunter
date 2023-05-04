@@ -7,7 +7,7 @@ import { FaGoogle, FaGithub } from 'react-icons/fa';
 
 
 const Register = () => {
-    const { createUser , signInWithGoogle } = useContext(AuthContext);
+    const { createUser , signInWithGoogle , signInWithGithub } = useContext(AuthContext);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -50,10 +50,26 @@ const Register = () => {
 
 
 
-    const handleGoogleSignUp = event => {
-        event.preventDefault();
+    const handleGoogleSignUp = () => {
+        
 
         signInWithGoogle()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                setSuccess('user login successful')
+                setError('')
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                console.log(error);
+                setError(error.message)
+            })
+    }
+
+    const handleGithubSignIn = () => {
+
+        signInWithGithub()
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
@@ -118,7 +134,7 @@ const Register = () => {
                     <Button onClick={handleGoogleSignUp} variant="outline-dark" className="me-2">
                         Register With Gmail  <FaGoogle />
                     </Button>
-                    <Button variant="outline-dark">
+                    <Button onClick={handleGithubSignIn} variant="outline-dark">
                         Register With Github  <FaGithub></FaGithub>
                     </Button>
                 </div>

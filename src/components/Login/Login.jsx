@@ -49,8 +49,8 @@ const Login = () => {
     }
 
 
-    const handleGoogleSignIn = event => {
-        event.preventDefault();
+    const handleGoogleSignIn = () => {
+       
 
         signInWithGoogle()
             .then(result => {
@@ -65,8 +65,7 @@ const Login = () => {
                 setError(error.message)
             })
     }
-    const handleGithubSignIn = event => {
-        event.preventDefault();
+    const handleGithubSignIn = () => {
 
         signInWithGithub()
             .then(result => {
@@ -116,7 +115,7 @@ const Login = () => {
                     <Button onClick={handleGoogleSignIn} variant="outline-dark" className="me-2">
                        Login With Gmail  <FaGoogle />
                     </Button>
-                    <Button variant="outline-dark">
+                    <Button onClick={handleGithubSignIn} variant="outline-dark">
                        Login With Github  <FaGithub></FaGithub>
                     </Button>
                 </div>
