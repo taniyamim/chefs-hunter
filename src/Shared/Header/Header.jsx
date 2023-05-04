@@ -6,16 +6,27 @@ import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../assets/fusion-cuisine-low-resolution-logo-black-on-transparent-background.png'
 import logo2 from '../../assets/fusion-cuisine-logo.png'
 import './Header.css'
-import { Link , NavLink } from 'react-router-dom';
+import { Link, NavLink} from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 import { FaUserCircle } from "react-icons/fa";
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const Header = () => {
-    const { user , logOut } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    const userTooltip = (
+        <Tooltip>
+            {user?.displayName}
+        </Tooltip>
+    );
     const handleLogOut = () => {
         logOut()
-        .then()
-        .catch(error => console.log(eroor))
+            .then()
+            .catch(error => console.log(eroor))
+
+
+
+
     }
 
     return (
@@ -67,9 +78,13 @@ const Header = () => {
 
                         </Nav>
                         <Nav>
-                            {
-                                user && <Nav.Link href="#deets"> <FaUserCircle style={{ fontSize: '2rem' }}></FaUserCircle> </Nav.Link>
-                            }
+                            {user && (
+                                <OverlayTrigger placement="bottom" overlay={userTooltip}>
+                                    <Nav.Link href="#deets">
+                                        <img src={user.photoURL} className='rounded-circle w-50' alt="" />
+                                    </Nav.Link>
+                                </OverlayTrigger>
+                            )}
                             {
                                 user ?
                                     <Button onClick={handleLogOut} variant="secondary">Logout</Button> :

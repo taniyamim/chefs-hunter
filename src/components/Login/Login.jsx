@@ -6,7 +6,7 @@ import { FaGoogle, FaGithub } from 'react-icons/fa';
 
 
 const Login = () => {
-    const { signIn } = useContext(AuthContext);
+    const { signIn , signInWithGoogle , signInWithGithub } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     console.log('login page location', location)
@@ -17,6 +17,10 @@ const Login = () => {
     
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    
+
+
+
     const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
@@ -31,6 +35,40 @@ const Login = () => {
         }
 
         signIn(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                setSuccess('user login successful')
+                setError('')
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                console.log(error);
+                setError(error.message)
+            })
+    }
+
+
+    const handleGoogleSignIn = event => {
+        event.preventDefault();
+
+        signInWithGoogle()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                setSuccess('user login successful')
+                setError('')
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                console.log(error);
+                setError(error.message)
+            })
+    }
+    const handleGithubSignIn = event => {
+        event.preventDefault();
+
+        signInWithGithub()
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
@@ -75,7 +113,7 @@ const Login = () => {
                 <p className='text-center'>Or</p>
                 <div className="my-4 d-flex">
                     
-                    <Button variant="outline-dark" className="me-2">
+                    <Button onClick={handleGoogleSignIn} variant="outline-dark" className="me-2">
                        Login With Gmail  <FaGoogle />
                     </Button>
                     <Button variant="outline-dark">

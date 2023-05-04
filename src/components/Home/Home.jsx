@@ -3,12 +3,15 @@ import Banner from '../Banner/Banner';
 import { useLoaderData } from 'react-router-dom';
 import Chefs from '../Chefs/Chefs';
 import './Home.css'
+import TraditionalDish from '../TraditionalDish/TraditionalDish';
+import AboutUs from '../AboutUs/AboutUs';
 
 const Home = () => {
     const chefs = useLoaderData();
     console.log(chefs);
     return (
-        <div className='border m-3 p-5'>
+        <div className=' border m-3 py-5 px-2'>
+            <Banner></Banner>
             <h1 className='text-center'>Our Chefs</h1>
             <div className='row'>
                 {
@@ -26,7 +29,15 @@ const Home = () => {
                     ))
                 }
             </div>
-            <Banner></Banner>
+
+            <div>
+                <TraditionalDish></TraditionalDish>
+            </div>
+
+            <div>
+                <AboutUs></AboutUs>
+            </div>
+            
         </div>
     );
 };

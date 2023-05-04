@@ -1,13 +1,18 @@
 import React, { useContext } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 
 
 const Register = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser , signInWithGoogle } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    console.log('login page location', location)
+    const from = location.state?.from?.pathname || '/'
     const [accepted, setAccepted] = useState(false);
 
     const [error, setError] = useState('');
@@ -40,6 +45,25 @@ const Register = () => {
             .catch(error => {
                 console.log(error);
                 setError(error.message);
+            })
+    }
+
+
+
+    const handleGoogleSignUp = event => {
+        event.preventDefault();
+
+        signInWithGoogle()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                setSuccess('user login successful')
+                setError('')
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                console.log(error);
+                setError(error.message)
             })
     }
 
@@ -91,7 +115,7 @@ const Register = () => {
                 <p className='text-center'>Or</p>
                 <div className="my-4 d-flex">
 
-                    <Button variant="outline-dark" className="me-2">
+                    <Button onClick={handleGoogleSignUp} variant="outline-dark" className="me-2">
                         Register With Gmail  <FaGoogle />
                     </Button>
                     <Button variant="outline-dark">
