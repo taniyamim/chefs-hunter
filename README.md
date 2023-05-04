@@ -10,6 +10,7 @@ About my project :
 *In the login page there are three option for login email,password or google or github.
 * There is also a register page it will allow user to register.
 * I have added a favorite button where favorite recipe can be added and a toaster will show. 
+* I have added a tooltip to show the user name after hover on the user profile image.
 
 ### Link of my live site is:
 
